@@ -12,6 +12,24 @@ class Loginpage extends StatelessWidget {
           Image.asset(
             'assets/images/scholar.png',
           ),
+          const Text(
+            "Scholar Chat",
+            style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.w700,
+              fontFamily: "Pacifico",
+              color: Colors.white,
+            ),
+          ),
+          const Text(
+            "LogIn",
+            style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.w700,
+              fontFamily: "Pacifico",
+              color: Colors.white,
+            ),
+          ),
         ],
       ),
     );
