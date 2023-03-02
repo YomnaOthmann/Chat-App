@@ -1,4 +1,4 @@
-import 'package:chat_app/widgets/custom_appbar.dart';
+import 'package:chat_app/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,10 +10,8 @@ class ChatApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-      appBar:
-          PreferredSize(preferredSize: Size.infinite, child: CustomAppBar()),
-    ));
+    return const MaterialApp(
+      home: Loginpage(),
+    );
   }
 }
