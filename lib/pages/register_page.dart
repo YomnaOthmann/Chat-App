@@ -1,16 +1,16 @@
-import 'package:chat_app/constants/colors.dart';
-import 'package:chat_app/widgets/custom_text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../constants/routes.dart';
 import '../widgets/custom_button.dart';
+import '../widgets/custom_text_field.dart';
 
-class Loginpage extends StatelessWidget {
-  const Loginpage({super.key});
+class RegisterPage extends StatelessWidget {
+  String? email;
+  String? password;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.kPrimaryColor,
+      backgroundColor: const Color(0xff2B475E),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -35,56 +35,68 @@ class Loginpage extends StatelessWidget {
                 ),
               ),
               const Text(
-                "LOGIN",
+                "Register",
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w700,
                   color: Colors.white,
                 ),
               ),
-              const SizedBox(
-                height: 40,
-              ),
+              const SizedBox(height: 40),
               CustomTextField(
                 label: "Email",
-                changed: (mail) {},
+                changed: (mail) {
+                  email = mail;
+                },
               ),
               // ignore: prefer_const_constructors
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               CustomTextField(
                 label: "Password",
-                changed: (pass) {},
+                changed: (pass) {
+                  password = pass;
+                },
               ),
-              const SizedBox(
-                height: 30,
-              ),
+
+              const SizedBox(height: 30),
               CustomButton(
-                textTitle: "LogIn",
-                pressed: () {},
+                textTitle: "Register",
+                pressed: () async {
+                  try {
+                    UserCredential user = await FirebaseAuth.instance
+                        .createUserWithEmailAndPassword(
+                      email: email!,
+                      password: password!,
+                    );
+                    print(user.user!.displayName);
+                  } on FirebaseAuthException catch (error) {
+                    if (error.code == '') {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(error.toString())),
+                    );
+                    print(error);
+                  }
+                },
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "don't have an account?",
+                    "already have an account?",
                     style: TextStyle(color: Colors.white),
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, Routes.kRegister);
+                      Navigator.pop(context);
                     },
                     child: const Text(
-                      "Sign Up",
+                      "Log In",
                       style: TextStyle(color: Color(0xffc7ede6)),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 75,
-              )
+              const SizedBox(height: 75),
             ],
           ),
         ),
