@@ -25,7 +25,7 @@ class ChatApp extends StatelessWidget {
       routes: {
         Routes.kLogin: (context) => Loginpage(),
         Routes.kRegister: (context) => RegisterPage(),
-        Routes.kChat: (context) => const ChatPage(),
+        Routes.kChat: (context) => ChatPage(),
       },
       initialRoute: Routes.kLogin,
     );

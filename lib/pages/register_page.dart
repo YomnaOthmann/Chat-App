@@ -1,3 +1,4 @@
+import 'package:chat_app/constants/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -95,8 +96,11 @@ class _RegisterPageState extends State<RegisterPage> {
 
                           try {
                             await registerUser();
+
                             showSnackBar(
                                 context, 'Account created successfully ❤️');
+                            Navigator.pushReplacementNamed(
+                                context, Routes.kChat);
                           } on FirebaseAuthException catch (error) {
                             if (error.code == 'weak-password') {
                               showSnackBar(
