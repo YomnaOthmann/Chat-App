@@ -1,3 +1,4 @@
+import 'package:chat_app/models/message_model.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
@@ -5,7 +6,9 @@ import '../constants/colors.dart';
 class CustomChatBubble extends StatelessWidget {
   const CustomChatBubble({
     super.key,
+    required this.message,
   });
+  final Message message;
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +27,8 @@ class CustomChatBubble extends StatelessWidget {
                 topStart: Radius.circular(30),
                 topEnd: Radius.circular(30),
                 bottomEnd: Radius.circular(30))),
-        child: const Text(
-          "Hi Iam a new smnfms",
+        child: Text(
+          message.msg,
           overflow: TextOverflow.clip,
           style: TextStyle(color: Colors.white, fontSize: 18),
         ),

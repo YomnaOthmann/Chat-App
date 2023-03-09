@@ -8,7 +8,7 @@ import '../helper/snackbar.dart';
 import '../widgets/custom_button.dart';
 
 class Loginpage extends StatefulWidget {
-  Loginpage({super.key});
+  const Loginpage({super.key});
 
   @override
   State<Loginpage> createState() => _LoginpageState();
